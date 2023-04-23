@@ -1,14 +1,13 @@
-// pinentry-tem - A barebones pinentry for macOS using Touch ID and Keychain.
-// Author: Alexander Pushkov <alexander@notpushk.in>
-// SPDX-License-Identifier: ISC
+// pinentry-touchid - A barebones pinentry for macOS using Touch ID and Keychain.
+// Author: Matt Coneybeare <matt@coneybeare.me>
 
 import Foundation
 import LocalAuthentication
 import Darwin.C
 
-let keychainServiceName = "sh.ale.PinentryTem.password"
+let keychainServiceName = "me.coneybeare.matt.pinentry-touchid.password"
 let policy = LAPolicy.deviceOwnerAuthenticationWithBiometrics
-let reason = "validate your Tem Shop purchase"
+let reason = "sign your commit with gpg."
 
 // Save the passphrase into Keychain.
 func setPassword(password: String) -> Bool  {
@@ -47,19 +46,19 @@ func interact() {
 
     var error: NSError?
     guard context.canEvaluatePolicy(policy, error: &error) else {
-        print("ERR 83886179 Your Mac doesn't support deviceOwnerAuthenticationWithBiometrics")
+        print("Your Mac doesn't support deviceOwnerAuthenticationWithBiometrics")
         exit(EXIT_FAILURE)
     }
 
-    print("OK hOI! welcom to... da TEM SHOP!!!")
+    print("OK. hello")
     while let input = readLine() {
         if input.lowercased().hasPrefix("setpass") {
             // TODO: use a CLI option
             guard setPassword(password: "SUPERSECURE") else {
-                print("ERR 83886179 ??????")
+                print("Failed to write the default password.")
                 continue
             }
-            print("OK tem set password to 'SUPERSECURE'!!! (change it using Keychain Access)")
+            print("OK. Password set to default value 'SUPERSECURE'. Change it using Keychain Access ASAP")
             continue
         }
 
@@ -68,21 +67,21 @@ func interact() {
                 context.evaluatePolicy(policy, localizedReason: reason) { success, error in
                     if success && error == nil {
                         guard let password = getPassword() else {
-                            print("ERR 83886179 you don hav da passwords,")
+                            print("Failed to get password from keychain.")
                             return
                         }
                         print("D \(password)")
-                        print("OK thanks PURCHASE!")
+                        print("OK thanks.")
                     } else {
                         let errorDescription = error?.localizedDescription ?? "Unknown error"
-                        print("ERR 83886179 \(errorDescription)")
+                        print("Error: \(errorDescription)")
                     }
                 }
             case "bye":
-                print("OK bOI")
+                print("OK bye.")
                 exit(EXIT_SUCCESS)
             default:
-                print("OK fdshfg")
+                print("OK, command not recognized.")
         }
     }
 

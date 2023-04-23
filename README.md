@@ -17,7 +17,7 @@ chmod +x /usr/local/bin/pinentry-touchid
 Save your key passphrase to Keychain:
 
 ```
-$ pinentry-tem
+$ pinentry-touchid
 OK. hello
 setpass
 OK. Password set to default value 'SUPERSECURE'. Change it using Keychain Access ASAP

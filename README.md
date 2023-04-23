@@ -5,7 +5,7 @@ A barebones pinentry for macOS using Touch ID and Keychain.
 Build it:
 
 ```sh
-swiftc main.swift -o ~/.local/bin/pinentry-touchid
+swiftc main.swift -o /usr/local/bin/pinentry-touchid
 ```
 
 Save your key passphrase to Keychain:
@@ -20,7 +20,7 @@ OK. Password set to default value 'SUPERSECURE'. Change it using Keychain Access
 Set GnuPG pinentry program:
 
 ```sh
-echo "pinentry-program ${HOME}/.local/bin/pinentry-tem" >> ~/.gnupg/gpg-agent.conf
+echo "pinentry-program /usr/local/bin/pinentry-touchid" >> ~/.gnupg/gpg-agent.conf
 # or replace the existing entry
 ```
 

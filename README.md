@@ -8,6 +8,12 @@ Build it:
 swiftc main.swift -o /usr/local/bin/pinentry-touchid
 ```
 
+Let it run:
+
+```sh
+chmod +x /usr/local/bin/pinentry-touchid
+```
+
 Save your key passphrase to Keychain:
 
 ```

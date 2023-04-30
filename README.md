@@ -20,7 +20,7 @@ Save your key passphrase to Keychain:
 $ pinentry-touchid
 OK. hello
 setpass
-OK. Password set to default value 'SUPERSECURE'. Change it using Keychain Access ASAP
+OK. Password set to default value 'CHANGEMENOW'. Change it using Keychain Access ASAP
 ```
 
 Set GnuPG pinentry program:
